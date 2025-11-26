@@ -91,7 +91,7 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
         .list-item { animation: fadeIn 0.3s ease forwards; }
 
-        /* --- 💓 ANIMAÇÃO PULSANTE DO MARCADOR --- */
+        /* --- Animação Pulsante do Marcador --- */
         @keyframes pulse-animation {
             0% { transform: scale(1) translateY(0); filter: drop-shadow(0 0 0 rgba(147, 51, 234, 0.7)); }
             50% { transform: scale(1.1) translateY(-10px); filter: drop-shadow(0 15px 15px rgba(147, 51, 234, 0.3)); }
@@ -109,13 +109,10 @@
 
     <div id="map"></div>
 
-    <!-- UI LAYER (Camada de Interface) -->
     <div class="absolute inset-0 pointer-events-none flex flex-col z-10">
         
-        <!-- HEADER & BUSCA -->
         <div class="p-4 w-full max-w-lg mx-auto pointer-events-auto">
             
-            <!-- Top Bar: Level & Theme -->
             <div class="glass-panel p-2 pr-3 pl-3 rounded-full flex items-center justify-between mb-4 shadow-sm mx-auto w-fit md:w-full transition-all">
                 <div class="flex items-center gap-3">
                     <div class="bg-gradient-to-br from-blue-500 to-indigo-600 w-8 h-8 rounded-full flex items-center justify-center shadow-md text-white font-bold text-xs">
@@ -133,7 +130,6 @@
                 </button>
             </div>
 
-            <!-- BARRA DE BUSCA -->
             <div class="relative group w-full shadow-xl rounded-2xl">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
                     <i class="fas fa-search text-gray-400 group-focus-within:text-blue-500 transition-colors"></i>
@@ -142,14 +138,11 @@
                     class="glass-panel search-input w-full py-4 pl-12 pr-12 rounded-2xl placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 border border-white/20 shadow-sm text-gray-800 dark:text-white text-base"
                     placeholder="Qual rua você procura?">
                 
-                <!-- Loader no input -->
                 <div id="search-loader" class="absolute inset-y-0 right-4 flex items-center hidden">
                     <i class="fas fa-circle-notch fa-spin text-blue-500"></i>
                 </div>
 
-                <!-- PAINEL DE SUGESTÕES (Dropdown) -->
                 <div id="search-panel" class="absolute top-full left-0 right-0 mt-2 glass-panel rounded-xl overflow-hidden transition-all duration-300 opacity-0 invisible transform -translate-y-2 pointer-events-auto max-h-[60vh] flex flex-col shadow-2xl">
-                    <!-- Abas -->
                     <div class="flex border-b border-gray-200/50 dark:border-gray-700/50 bg-white/30 dark:bg-black/20 backdrop-blur-sm">
                         <button onclick="switchTab('ranking')" class="flex-1 py-3 text-[10px] font-bold uppercase tracking-wide transition-colors text-blue-600 border-b-2 border-blue-500 tab-btn" data-tab="ranking">Populares</button>
                         <button onclick="switchTab('history')" class="flex-1 py-3 text-[10px] font-bold uppercase tracking-wide transition-colors text-gray-500 tab-btn" data-tab="history">Recentes</button>
@@ -160,9 +153,7 @@
             </div>
         </div>
 
-        <!-- CONTROLES LATERAIS -->
-        <div class="absolute right-4 bottom-24 md:bottom-10 flex flex-col gap-3 pointer-events-auto pb-4"> <!-- Ajuste bottom para mobile -->
-            <button onclick="locateUser()" class="glass-panel w-12 h-12 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 hover:scale-110 active:scale-90 transition-all shadow-lg bg-white dark:bg-slate-800" title="Minha Localização">
+        <div class="absolute right-4 bottom-24 md:bottom-10 flex flex-col gap-3 pointer-events-auto pb-4"> <button onclick="locateUser()" class="glass-panel w-12 h-12 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 hover:scale-110 active:scale-90 transition-all shadow-lg bg-white dark:bg-slate-800" title="Minha Localização">
                 <i class="fas fa-crosshairs text-lg"></i>
             </button>
             <button onclick="resetApp()" class="glass-panel w-12 h-12 rounded-full flex items-center justify-center text-red-500 hover:scale-110 active:scale-90 transition-all shadow-lg bg-white dark:bg-slate-800" title="Limpar Dados">
@@ -171,16 +162,13 @@
         </div>
     </div>
 
-    <!-- CARD DE RESULTADO (MODAL INFERIOR) -->
     <div id="result-card" class="fixed bottom-0 left-0 right-0 result-card p-0 pointer-events-auto max-w-2xl mx-auto shadow-up flex flex-col">
         
-        <!-- Área de Arrastar/Fechar -->
         <div class="w-full p-2 cursor-pointer bg-transparent" onclick="closeCard()">
             <div class="w-12 h-1.5 bg-gray-300 dark:bg-gray-600 rounded-full mx-auto"></div>
         </div>
         
         <div class="px-6 pb-8 pt-2 overflow-y-auto custom-scroll">
-            <!-- Cabeçalho do Card -->
             <div class="flex justify-between items-start mb-5">
                 <div>
                     <span id="card-badge" class="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider text-white bg-blue-500 shadow-sm mb-2">Residencial</span>
@@ -195,7 +183,6 @@
                 </button>
             </div>
 
-            <!-- CEP e Distância -->
             <div class="grid grid-cols-2 gap-3 mb-6">
                 <div class="bg-gray-50 dark:bg-slate-800/50 p-3 rounded-xl border border-gray-100 dark:border-gray-700 text-center">
                     <p class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">CEP</p>
@@ -207,10 +194,8 @@
                 </div>
             </div>
 
-            <!-- SERVIÇOS LOCAIS (INTEGRAÇÃO) -->
             <h3 class="text-xs font-bold uppercase text-gray-400 mb-3 tracking-wider">Serviços Próximos</h3>
             <div class="grid grid-cols-2 gap-3 mb-6">
-                <!-- Item Serviço -->
                 <div class="flex items-center gap-3 p-3 rounded-xl bg-blue-50/50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-800/30">
                     <div class="w-8 h-8 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center text-blue-500 shadow-sm">
                         <i class="fas fa-cloud-sun"></i>
@@ -220,7 +205,6 @@
                         <p id="weather-temp" class="text-sm font-bold text-gray-800 dark:text-gray-200">--</p>
                     </div>
                 </div>
-                <!-- Item Serviço -->
                 <div class="flex items-center gap-3 p-3 rounded-xl bg-yellow-50/50 dark:bg-yellow-900/10 border border-yellow-100 dark:border-yellow-800/30">
                     <div class="w-8 h-8 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center text-yellow-600 shadow-sm">
                         <i class="fas fa-truck"></i>
@@ -230,7 +214,6 @@
                         <p id="service-correios" class="text-sm font-bold text-gray-800 dark:text-gray-200">-- km</p>
                     </div>
                 </div>
-                <!-- Item Serviço -->
                 <div class="flex items-center gap-3 p-3 rounded-xl bg-red-50/50 dark:bg-red-900/10 border border-red-100 dark:border-red-800/30">
                     <div class="w-8 h-8 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center text-red-500 shadow-sm">
                         <i class="fas fa-heartbeat"></i>
@@ -240,7 +223,6 @@
                         <p id="service-saude" class="text-sm font-bold text-gray-800 dark:text-gray-200">-- km</p>
                     </div>
                 </div>
-                <!-- Item Serviço -->
                 <div class="flex items-center gap-3 p-3 rounded-xl bg-purple-50/50 dark:bg-purple-900/10 border border-purple-100 dark:border-purple-800/30">
                     <div class="w-8 h-8 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center text-purple-500 shadow-sm">
                         <i class="fas fa-shopping-basket"></i>
@@ -252,7 +234,6 @@
                 </div>
             </div>
 
-            <!-- Botões de Ação -->
             <div class="grid grid-cols-2 gap-3">
                 <button onclick="copyCep()" class="py-3.5 rounded-xl bg-gray-100 hover:bg-gray-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-gray-700 dark:text-gray-200 font-semibold transition-colors flex items-center justify-center gap-2 active:scale-95">
                     <i class="far fa-copy"></i> Copiar
@@ -264,7 +245,6 @@
         </div>
     </div>
 
-    <!-- TOAST (Notificação Flutuante) -->
     <div id="toast" class="fixed top-24 left-1/2 transform -translate-x-1/2 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md px-5 py-2.5 rounded-full flex items-center gap-3 transition-all duration-500 opacity-0 translate-y-[-30px] pointer-events-none z-[60] shadow-xl border border-gray-100 dark:border-gray-700">
         <div class="w-6 h-6 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 text-xs">
             <i id="toast-icon" class="fas fa-trophy"></i>
@@ -366,20 +346,19 @@
         };
 
         // --- INICIALIZAÇÃO DO MAPA ---
-        // No seu index.html:
+        const map = L.map('map', { zoomControl: false }).setView([CENTER_COORDS.lat, CENTER_COORDS.lng], 15);
 
-const map = L.map('map', { zoomControl: false }).setView([CENTER_COORDS.lat, CENTER_COORDS.lng], 15);
+        // Inicializa o mapa na localização atual do usuário
+        map.locate({setView: true, maxZoom: 17, enableHighAccuracy: true}); 
 
-// 👇 ADICIONE ESSA LINHA PARA INICIAR ONDE A PESSOA ESTÁ 👇
-map.locate({setView: true, maxZoom: 17, enableHighAccuracy: true}); 
+        let currentTileLayer = L.tileLayer(TILES.light, { attribution: '', maxZoom: 20 }).addTo(map);
 
-let currentTileLayer = L.tileLayer(TILES.light, { attribution: '', maxZoom: 20 }).addTo(map);
-
-// (Opcional) Mostra um círculo azul onde a pessoa está
-map.on('locationfound', (e) => {
-    L.circle(e.latlng, e.accuracy / 2).addTo(map);
-});
-        // Ícones
+        // (Opcional) Mostra um círculo azul onde a pessoa está
+        map.on('locationfound', (e) => {
+            L.circle(e.latlng, e.accuracy / 2).addTo(map);
+        });
+        
+        // Definição de Ícones
         const createIcon = (color) => L.divIcon({
             className: 'custom-marker',
             html: `<svg width="48" height="48" viewBox="0 0 40 40" fill="none" style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));"><path d="M20 0C11.1634 0 4 7.16344 4 16C4 26.5 20 40 20 40C20 40 36 26.5 36 16C36 7.16344 28.8366 0 20 0Z" fill="${color}" stroke="white" stroke-width="2"/><circle cx="20" cy="16" r="6" fill="white" fill-opacity="0.9"/></svg>`,
@@ -394,12 +373,11 @@ map.on('locationfound', (e) => {
 
         let currentMarker = null;
 
-        // --- CLIQUE NO MAPA (FlyTo + Efeito Pulsante) ---
-      // --- CLIQUE NO MAPA ---
+        // --- INTERAÇÃO DE CLIQUE NO MAPA ---
         map.on('click', async (e) => {
             const { lat, lng } = e.latlng;
 
-            // 1. Marca visualmente onde clicou IMEDIATAMENTE (Feedback rápido)
+            // 1. Marca visualmente onde clicou imediatamente (Feedback rápido)
             if (currentMarker) map.removeLayer(currentMarker);
             currentMarker = L.marker([lat, lng], { icon: purpleIcon }).addTo(map);
             
@@ -414,10 +392,10 @@ map.on('locationfound', (e) => {
                 
                 let ruaNome = "Local Selecionado";
                 if (dataOSM && dataOSM.address) {
-                     ruaNome = dataOSM.address.road || dataOSM.address.pedestrian || dataOSM.address.suburb || "Local sem nome";
+                      ruaNome = dataOSM.address.road || dataOSM.address.pedestrian || dataOSM.address.suburb || "Local sem nome";
                 }
 
-                // 3. Pergunta ao nosso Banco de Dados quem é essa rua
+                // 3. Consulta ao Banco de Dados interno
                 const resDB = await fetch(`${API_URL}/geo-match`, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
@@ -428,9 +406,9 @@ map.on('locationfound', (e) => {
                 if (jsonDB.found) {
                     confetti({ particleCount: 80, spread: 60, origin: { y: 0.6 } });
                     
-                    // --- O SEGREDO ESTÁ AQUI ---
+                    // Chama a função para processar a localização selecionada
                     // Passamos as coordenadas DO CLIQUE (lat, lng) para a função
-                    // E avisamos: "isClick: true"
+                    // E avisamos que foi um clique direto
                     selectLocation(jsonDB.data, { lat: lat, lng: lng, isClick: true });
                     
                 } else {
@@ -454,7 +432,7 @@ map.on('locationfound', (e) => {
             document.getElementById('search-panel').classList.add('opacity-0', 'invisible', '-translate-y-2');
         }
 
-        // --- DISTÂNCIAS E SERVIÇOS ---
+        // --- CÁLCULO DE DISTÂNCIAS E SERVIÇOS ---
         function calculateDistance(lat1, lon1, lat2, lon2) {
             const R = 6371; const dLat = (lat2 - lat1) * Math.PI / 180; const dLon = (lon2 - lon1) * Math.PI / 180;
             const a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon/2) * Math.sin(dLon/2);
@@ -484,7 +462,7 @@ map.on('locationfound', (e) => {
             } catch (e) { document.getElementById('weather-temp').innerText = "--"; }
         }
 
-        // --- TEMA ---
+        // --- GERENCIAMENTO DE TEMA ---
         function applyTheme(theme) {
             document.body.className = theme === 'dark' ? 'dark-mode' : 'light-mode';
             document.getElementById('theme-icon').className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
@@ -523,13 +501,13 @@ map.on('locationfound', (e) => {
             setTimeout(() => toast.classList.add('opacity-0', 'translate-y-[-30px]'), 3000);
         }
 
-        // --- LOGICA PRINCIPAL ---
+        // --- LÓGICA PRINCIPAL DA INTERFACE ---
         const searchInput = document.getElementById('search-input');
         const searchPanel = document.getElementById('search-panel');
         const tabContent = document.getElementById('tab-content');
         const resultCard = document.getElementById('result-card');
 
-        // Highlighting
+        // Highlighting de Texto
         function highlightMatch(text, query) {
             if (!query || !text) return text;
             const safeQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -542,7 +520,7 @@ map.on('locationfound', (e) => {
             renderTab('ranking');
         });
         
-        // Debounce Busca
+        // Debounce da Busca
         let debounceTimer;
         searchInput.addEventListener('input', (e) => {
             const query = e.target.value;
@@ -568,7 +546,7 @@ map.on('locationfound', (e) => {
             }, 300);
         });
 
-        // Tabs
+        // Controle de Abas
         function switchTab(tab) {
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 if(btn.dataset.tab === tab) {
@@ -624,21 +602,21 @@ map.on('locationfound', (e) => {
             });
         }
 
-       // Agora aceita um segundo parâmetro opcional "origemClique"
-   async function selectLocation(item, origemClique = null) {
-            console.log("📍 Processando:", item.nome_rua);
+        // Função de seleção de local com parâmetro opcional de origem
+       async function selectLocation(item, origemClique = null) {
+            console.log("Processando:", item.nome_rua);
 
             let latFinal = null;
             let lngFinal = null;
 
             // --- 1. DEFINIÇÃO DE COORDENADAS ---
             
-            // A) Se for CLIQUE, usa onde clicou
+            // A) Se for CLIQUE, usa as coordenadas exatas do clique
             if (origemClique && origemClique.isClick) {
                 latFinal = origemClique.lat;
                 lngFinal = origemClique.lng;
             } 
-            // B) Se for PESQUISA, usa o Banco (ou Internet)
+            // B) Se for PESQUISA, usa o Banco de Dados (ou Internet)
             else {
                 const latBanco = parseFloat(item.lat);
                 const lngBanco = parseFloat(item.lng);
@@ -647,7 +625,7 @@ map.on('locationfound', (e) => {
                     latFinal = latBanco;
                     lngFinal = lngBanco;
                 } else {
-                    // Fallback internet
+                    // Fallback para busca na internet
                     try {
                         const termo = `${item.nome_rua}, Colônia Treze, Lagarto, Sergipe`;
                         const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(termo)}`);
@@ -663,24 +641,24 @@ map.on('locationfound', (e) => {
             // Fallback final se falhar
             if (!latFinal) { latFinal = CENTER_COORDS.lat; lngFinal = CENTER_COORDS.lng; }
 
-            // --- 2. MARCADOR E MAPA (A MUDANÇA ESTÁ AQUI) ---
+            // --- 2. ATUALIZAÇÃO DO MARCADOR E MAPA ---
 
             // Remove o pino anterior e coloca o novo no destino
             if (currentMarker) map.removeLayer(currentMarker);
             currentMarker = L.marker([latFinal, lngFinal], { icon: purpleIcon }).addTo(map);
             
-            // 🛑 LÓGICA DO ZOOM:
-            // Se for CLIQUE DO USUÁRIO, a gente move o mapa pra ficar bonito.
+            // Lógica de controle do Zoom:
+            // Se for CLIQUE DO USUÁRIO, movemos o mapa para focar no ponto.
             if (origemClique && origemClique.isClick) {
                 map.flyTo([latFinal, lngFinal], 17, { duration: 1.0 });
             } 
-            // Se for PESQUISA, a gente NÃO FAZ NADA com o mapa (flyTo).
-            // O mapa continua na localização da pessoa, mas o pino é criado lá longe na rua certa.
+            // Se for PESQUISA, NÃO alteramos o zoom/posição do mapa (flyTo).
+            // O mapa continua na localização da pessoa, mas o pino é criado no local correto.
             else {
-                console.log("🔍 Pesquisa realizada. Mantendo mapa fixo na posição do usuário.");
+                console.log("Pesquisa realizada. Mantendo mapa fixo na posição do usuário.");
             }
 
-            // --- 3. UI E DADOS (ISSO CONTINUA NORMAL) ---
+            // --- 3. ATUALIZAÇÃO DE UI E DADOS ---
             
             STATE.currentResult = item;
             await API.incrementarBusca(item.id);
@@ -735,7 +713,7 @@ map.on('locationfound', (e) => {
 
         map.on('locationfound', (e) => { L.circle(e.latlng, e.accuracy).addTo(map); showToast('Você está aqui', 'crosshairs'); });
         
-        // Close panel on click outside
+        // Fecha o painel ao clicar fora
         document.addEventListener('click', (e) => {
             if (!searchInput.contains(e.target) && !searchPanel.contains(e.target)) {
                 searchPanel.classList.add('opacity-0', 'invisible', '-translate-y-2');
@@ -743,6 +721,7 @@ map.on('locationfound', (e) => {
         });
 
         updateGamification();
+        
         // --- CONTROLE DO PAINEL DE CRÉDITOS ---
         const creditsBtn = document.getElementById('credits-btn');
         const creditsPanel = document.getElementById('credits-panel');
