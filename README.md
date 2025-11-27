@@ -71,7 +71,5 @@ Desenvolvido por Luis de Jesus Fernandes. Estudante de Sistemas de Informação 
 🐙 GitHub: devluizinwxy
 
 Feito com 💙 para a comunidade da Colônia Treze.
-
-
 ### Dica Extra:
 No GitHub, se você puder, tire um **Print da tela do seu site** (uma do mapa e uma da pesquisa), salve n
